@@ -3,12 +3,13 @@
 # http://picamera.readthedocs.io/en/latest/recipes2.html#web-streaming
 
 import io
+import picamera
 import logging
 import socketserver
 from threading import Condition
 from http import server
 
-PAGE="""
+PAGE="""\
 <html>
 <head>
 <title>Raspberry Pi - Surveillance Camera</title>
@@ -58,9 +59,9 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.end_headers()
             try:
                 while True:
-                    with self.output.condition:
-                        self.output.condition.wait()
-                        frame = self.output.frame
+                    with output.condition:
+                        output.condition.wait()
+                        frame = output.frame
                     self.wfile.write(b'--FRAME\r\n')
                     self.send_header('Content-Type', 'image/jpeg')
                     self.send_header('Content-Length', len(frame))
@@ -79,5 +80,14 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
     allow_reuse_address = True
     daemon_threads = True
 
-    def setOutput(self, out):
-        self.
+with picamera.PiCamera(resolution='640x480', framerate=24) as camera:
+    output = StreamingOutput()
+    #Uncomment the next line to change your Pi's Camera rotation (in degrees)
+    camera.rotation = 180
+    camera.start_recording(output, format='mjpeg')
+    try:
+        address = ('', 8000)
+        server = StreamingServer(address, StreamingHandler)
+        server.serve_forever()
+    finally:
+        camera.stop_recording()
