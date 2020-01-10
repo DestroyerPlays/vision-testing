@@ -9,7 +9,9 @@ def main():
         camera.start_recording(output, format='mjpeg')
         try:
             address = ('', 8000)
-            server = StreamingServer(address, StreamingHandler)
+            handler = StreamingHandler()
+            handler.setOutput(output)
+            server = StreamingServer(address, handler)
             server.serve_forever()
         finally:
             camera.stop_recording()
