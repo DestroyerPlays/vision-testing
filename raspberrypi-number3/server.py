@@ -45,13 +45,8 @@ while True:
  
 	# update the new frame in the frame dictionary
 	currentFrame = frame
- 
-	montages = build_montages(frame, (w, h), (40, 30))
- 
-	# display the montage(s) on the screen
-	for (i, montage) in enumerate(montages):
-		cv2.imshow("Yes ({})".format(i),
-			montage)
+
+	cv2.imshow('image', currentFrame)
  
 	# detect any kepresses
 	key = cv2.waitKey(1) & 0xFF
