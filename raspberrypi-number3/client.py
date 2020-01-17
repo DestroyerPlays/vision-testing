@@ -23,8 +23,8 @@ img_height = 240
 # get the host name, initialize the video stream, and allow the
 # camera sensor to warmup
 rpiName = socket.gethostname()
-vs = VideoStream(usePiCamera=True, resolution=(img_width, img_height)).start()
-#vs = VideoStream(src=0).start()
+#vs = VideoStream(usePiCamera=True, resolution=(img_width, img_height)).start()
+vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
 kalman = cv2.KalmanFilter(2, 1, 0)
@@ -70,9 +70,9 @@ while True:
 	img = vs.read()
 
 	#img = np.zeros((img_height, img_width, 3), np.uint8)
-	draw_cross(img, np.int32(state_pt), (255, 255, 255), 3)
-	draw_cross(img, np.int32(measurement_pt), (0, 0, 255), 3)
-	draw_cross(img, np.int32(predict_pt), (0, 255, 0), 3)
+	# draw_cross(img, np.int32(state_pt), (255, 255, 255), 3)
+	# draw_cross(img, np.int32(measurement_pt), (0, 0, 255), 3)
+	# draw_cross(img, np.int32(predict_pt), (0, 255, 0), 3)
 
 	cv2.line(img, state_pt, measurement_pt, (0, 0, 255), 3, cv2.LINE_AA, 0)
 	cv2.line(img, state_pt, predict_pt, (0, 255, 255), 3, cv2.LINE_AA, 0)
