@@ -67,7 +67,9 @@ while True:
 	measurement_angle = measurement[0, 0]
 	measurement_pt = calc_point(measurement_angle)
 
-	img = np.zeros((img_height, img_width, 3), np.uint8)
+	img = vs.read()
+
+	#img = np.zeros((img_height, img_width, 3), np.uint8)
 	draw_cross(img, np.int32(state_pt), (255, 255, 255), 3)
 	draw_cross(img, np.int32(measurement_pt), (0, 0, 255), 3)
 	draw_cross(img, np.int32(predict_pt), (0, 255, 0), 3)
