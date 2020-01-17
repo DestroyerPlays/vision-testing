@@ -16,7 +16,6 @@ raspberrypi = ""
 imageHub.send_reply(b'OK')
 
 raspberrypi = rpiName
-lastActiveTime = datetime.now()
 currentFrame = None
 
 print("[INFO] receiving data from {}...".format(rpiName))
@@ -29,22 +28,19 @@ while True:
 	imageHub.send_reply(b'OK')
  
 	print("[INFO] receiving data from {}...".format(rpiName))
- 
-	# record the last active time for the device from which we just
-	# received a frame
-	lastActive = datetime.now()
 
     # resize the frame to have a maximum width of 400 pixels, then
 	# grab the frame dimensions and construct a blob
 	frame = imutils.resize(frame, width=400)
 	(h, w) = frame.shape[:2]
-	blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 0.007843, (300, 300), 127.5)
     
 	# draw the sending device name on the frame
 	cv2.putText(frame, rpiName, (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
  
 	# update the new frame in the frame dictionary
 	currentFrame = frame
+
+	currentFrame = cv2.cvtColor(currentFrame, cv2.COLOR_BGR2GRAY)
 
 	cv2.imshow('image', currentFrame)
  

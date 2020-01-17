@@ -3,6 +3,7 @@ import imagezmq.imagezmq as imagezmq
 import argparse
 import socket
 import time
+import cv2
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -24,4 +25,5 @@ time.sleep(2.0)
 while True:
 	# read the frame from the camera and send it to the server
 	frame = vs.read()
+	frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 	sender.send_image(rpiName, frame)
