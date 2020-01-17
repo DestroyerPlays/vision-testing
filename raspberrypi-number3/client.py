@@ -4,6 +4,7 @@ import argparse
 import socket
 import time
 import cv2
+import numpy as np
 from math import cos, sin, sqrt
 
 # construct the argument parser and parse the arguments
