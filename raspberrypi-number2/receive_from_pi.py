@@ -12,9 +12,12 @@ server_socket.listen(0)
 
 # Accept a single connection and make a file-like object out of it
 connection = server_socket.accept()[0].makefile('rb')
+cv2.namedWindow("Preview", cv2.WINDOW_NORMAL)
+cv2.resizeWindow("Preview",  900, 600)
 
 print("Connection Estabilished")
 try:
+    arr = np.array([])
     while True:
         # Read the length of the image as a 32-bit unsigned int. If the
         # length is zero, quit the loop
@@ -28,9 +31,13 @@ try:
         # Rewind the stream, open it as an image with PIL and do some
         # processing on it
         image_stream.seek(0)
-        img = cv2.imdecode(np.fromstring(image_stream.read(), np.uint8), 1)
 
-        print('Image is verified')
+        file_bytes = np.asarray(bytearray(image_stream.read()), dtype=np.uint8)
+        img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+        cv2.imshow("Preview", img)
+        cv2.waitKey(1)
 finally:
     connection.close()
     server_socket.close()
+    print(arr.shape)
+
