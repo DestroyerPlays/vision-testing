@@ -26,7 +26,6 @@ while True:
 	
 	if bounding_box is not None:
 		(success, box) = tracker.update(img)
-
 		if success:
 			(x, y, w, h) = [int(v) for v in box]
 			cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
@@ -47,14 +46,14 @@ while True:
 			sd.putNumber("error_y", diff_y)
 
 			cv2.putText(img, text, (30, 300), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-    else:
-        cv2.rectangle(frame, (0, 0), (30, 80), (255, 255, 0), 1)
+	else:
+		cv2.rectangle(frame, (0, 0), (30, 80), (255, 255, 0), 1)
 
-        client.send(img) # Send the image to the server
+		client.send(img) # Send the image to the server
 
-        _ = input('Press key to initialize')
+		_ = input('Press key to initialize')
 
-        bounding_box = (30, 80)
+		bounding_box = (30, 80)
  
 		tracker.init(frame, bounding_box)
 		
