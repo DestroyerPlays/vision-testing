@@ -21,6 +21,10 @@ tracker = cv2.TrackerKCF_create()
 while True:
 	img = client.read() # Read an image from the camera
 
+	img = client.read() # Read an image from the camera
+	
+	img = client.read() # Read an image from the camera
+
 	img_cy = int(img.shape[0] / 2)
 	img_cx = int(img.shape[1] / 2)
 	
@@ -53,7 +57,7 @@ while True:
 
 		_ = input('Press key to initialize')
 
-		bounding_box = (30, 80)
+		bounding_box = (0, 0, 30, 80)
  
 		tracker.init(img, bounding_box)
 		
