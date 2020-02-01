@@ -47,7 +47,7 @@ while True:
 
 			cv2.putText(img, text, (30, 300), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 	else:
-		cv2.rectangle(frame, (0, 0), (30, 80), (255, 255, 0), 1)
+		cv2.rectangle(img, (0, 0), (30, 80), (255, 255, 0), 1)
 
 		client.send(img) # Send the image to the server
 
@@ -55,7 +55,7 @@ while True:
 
 		bounding_box = (30, 80)
  
-		tracker.init(frame, bounding_box)
+		tracker.init(img, bounding_box)
 		
 	cv2.rectangle(img, (img_cx - 1, img_cy + 10), (img_cx + 1, img_cy - 10), (0, 255, 255), -1)
 
