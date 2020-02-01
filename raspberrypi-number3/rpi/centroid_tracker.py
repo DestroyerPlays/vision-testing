@@ -47,13 +47,13 @@ while True:
 
 			cv2.putText(img, text, (30, 300), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 	else:
-		cv2.rectangle(img, (img_cx - 15, img_cy - 40), (img_cx + 15, img_cy + 40), (255, 255, 0), 1)
+		cv2.rectangle(img, (img_cx - 15, img_cy - 20), (img_cx + 15, img_cy + 20), (255, 255, 0), 1)
 
 		client.send(img) # Send the image to the server
 
 		_ = input('Press key to initialize')
 
-		bounding_box = (img_cx - 15, img_cy - 40, img_cx + 15, img_cy + 40)
+		bounding_box = (img_cx - 15, img_cy - 20, img_cx + 15, img_cy + 20)
  
 		tracker.init(img, bounding_box)
 		
