@@ -21,10 +21,6 @@ tracker = cv2.TrackerKCF_create()
 while True:
 	img = client.read() # Read an image from the camera
 
-	img = client.read() # Read an image from the camera
-	
-	img = client.read() # Read an image from the camera
-
 	img_cy = int(img.shape[0] / 2)
 	img_cx = int(img.shape[1] / 2)
 	
@@ -51,13 +47,13 @@ while True:
 
 			cv2.putText(img, text, (30, 300), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 	else:
-		cv2.rectangle(img, (0, 0), (30, 80), (255, 255, 0), 1)
+		cv2.rectangle(img, (img_cx - 15, img_cy - 40), (img_cx + 15, img_cy + 40), (255, 255, 0), 1)
 
 		client.send(img) # Send the image to the server
 
 		_ = input('Press key to initialize')
 
-		bounding_box = (0, 0, 30, 80)
+		bounding_box = (img_cx - 15, img_cy - 40, img_cx + 15, img_cy + 40)
  
 		tracker.init(img, bounding_box)
 		
