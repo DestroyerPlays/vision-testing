@@ -53,7 +53,7 @@ while True:
 
 		_ = input('Press key to initialize')
 
-		bounding_box = (30, 80)
+		bounding_box = (0, 0, 30, 80)
  
 		tracker.init(img, bounding_box)
 		
