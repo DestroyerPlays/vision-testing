@@ -21,6 +21,10 @@ tracker = cv2.TrackerKCF_create()
 while True:
 	img = client.read() # Read an image from the camera
 
+	img = client.read() # Read an image from the camera
+	
+	img = client.read() # Read an image from the camera
+
 	img_cy = int(img.shape[0] / 2)
 	img_cx = int(img.shape[1] / 2)
 	
