@@ -16,7 +16,7 @@ while True:
 	img = client.read() # Read an image from the camera
 
 	#img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # Convert it to greyscale
-
+	
 	mask = backSub.apply(img)
 
 	masked = cv2.bitwise_and(img, img, mask=mask)
