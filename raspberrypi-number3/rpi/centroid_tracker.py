@@ -5,7 +5,7 @@ import cv2
 
 NetworkTables.initialize()
 
-sd = NetworkTables.getTable("SmartDashboard")
+sd = NetworkTables.getTable("datatable")
 
 bounding_box = None
 
@@ -51,7 +51,7 @@ while True:
 
 		_ = input('Press key to initialize')
 
-		bounding_box = (img_cx - 15, img_cy - 20), (img_cx + 15, img_cy + 20)
+		bounding_box = (img_cx - 15, img_cy - 20, img_cx + 15, img_cy + 20)
  
 		tracker.init(img, bounding_box)
 		

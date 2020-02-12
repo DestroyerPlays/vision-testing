@@ -20,7 +20,7 @@ class ServerBase():
         if path.exists(self.config_path):
             with open(self.config_path, 'r') as fp:
                 configjson = json.load(fp)
-
+                
                 port = configjson['port']
                 max_width = configjson['max-width']
                 max_height = configjson['max-height']
