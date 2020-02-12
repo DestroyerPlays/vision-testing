@@ -75,7 +75,7 @@ plt.ion()
 plt.plot([1.6, 2.7])
 
 p = pathlib.Path('.')
-files = p.glob('**/images/*')
+files = p.glob('**/video/*')
 
 while True:
     for filename in files:

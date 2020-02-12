@@ -8,7 +8,4 @@ client.start()
 
 while True:
     img = client.read()
-    cv2.imwrite("images/test_image_{}".format(time.time())+".png", img)
-    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    # client.send(img)
     client.send(img)
