@@ -83,8 +83,8 @@ best_high = (94, 255, 255)
 def pipeline(img, low, high):
 
     blur = cv2.bilateralFilter(img, 9, 400, 10)
-    denoise = cv2.fastNlMeansDenoisingColored(blur)
-    hsv = cv2.cvtColor(denoise, cv2.COLOR_BGR2HSV)
+    # denoise = cv2.fastNlMeansDenoisingColored(blur)
+    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
     thresh = cv2.inRange(hsv, low, high)
 
     return thresh
