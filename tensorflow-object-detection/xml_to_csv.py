@@ -7,8 +7,6 @@ def xml_to_dict(xml_path):
 
     member = root.find('object')
 
-    print(member)
-
     # (name, xmin, ymin, xmax, ymax)
     value = (root.find('filename').text, member[0].text, member[4][0].text, member[4][1].text, member[4][2].text, member[4][3].text)
 
@@ -24,13 +22,18 @@ def xml_to_dict(xml_path):
     return value
 
 def read_xmls(directory_path):
+    
     files = os.listdir(directory_path)
 
     data = []
 
     for i, filename in enumerate(files):
-        print(i)
+
+        file_name = filename.split('.')[0]
+        
         extension = filename.split('.')[1]
+
+        print(file_name)
 
         if extension == 'xml':
             file_path = os.path.join(directory_path, filename)
@@ -64,7 +67,6 @@ def export_as_csv(sorted_labels, csv_path):
             fp.write('\n')
 
 def main():
-
     data = read_xmls('test_model/images/train')
 
     sorted_labels = sort_label_list(data)
