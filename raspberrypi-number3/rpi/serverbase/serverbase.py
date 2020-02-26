@@ -14,6 +14,8 @@ class ServerBase():
         self.clients = []
         self.config_path = 'server-config.json'
 
+        self.im_count = 0
+
         self.init_config()
 
     def init_config(self):
@@ -69,9 +71,20 @@ class ServerBase():
 
             # detect any kepresses
             key = cv2.waitKey(1) & 0xFF
-        
+
+            cv2.resize(image, (200, 200), interpolation = cv2.INTER_AREA)
+
+            save_dir = '/home/luke/Documents/git-repos/vision-testing/frames/'
+            
+            file_path = save_dir + 'img_{:04}.png'.format(self.im_count)
+
+            self.im_count = self.im_count + 1
+
+            cv2.imwrite(file_path, image)
+            
             # if the `q` key was pressed, break from the loop
             if key == ord("q"):
                 break
+
         # do a bit of cleanup
         cv2.destroyAllWindows()
