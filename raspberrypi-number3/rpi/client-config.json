@@ -1,1 +1,1 @@
-{"port": 5555, "server-ip": "127.0.0.1", "client-id": "New-Raspberry-Pi", "image_width": 320, "image_height": 240, "piCamera": false}
+{"port": 5555, "server-ip": "192.168.1.44", "client-id": "New-Raspberry-Pi", "image_width": 320, "image_height": 240, "piCamera": false}
