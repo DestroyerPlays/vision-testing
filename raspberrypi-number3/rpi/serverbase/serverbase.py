@@ -76,7 +76,7 @@ class ServerBase():
 
             save_dir = '/home/luke/Documents/git-repos/vision-testing/frames/'
             
-            file_path = save_dir + 'img_{:04}.png'.format(self.im_count)
+            file_path = save_dir + 'targeted_img_{:04}.png'.format(self.im_count)
 
             self.im_count = self.im_count + 1
 
